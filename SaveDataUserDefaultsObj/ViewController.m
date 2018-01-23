@@ -9,6 +9,7 @@
 #import "ViewController.h"
 
 @interface ViewController ()
+@property (strong, nonatomic) IBOutlet UITextField *textField;
 
 @end
 
@@ -16,6 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.textField.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"save"];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -23,6 +25,10 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)saveAction:(UIBarButtonItem *)sender {
+    [[NSUserDefaults standardUserDefaults] setObject:self.textField.text forKey:@"save"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 
